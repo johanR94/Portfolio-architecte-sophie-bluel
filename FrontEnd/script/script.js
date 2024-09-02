@@ -1,11 +1,12 @@
 // Récupération des éléments DOM
-const portfolio = document.getElementById('portfolio')
-const gallery = document.querySelector(".gallery");
-const modifierAdmin = document.querySelector(".modifier");
-const logOut = document.querySelector(".logOut");
-const login = document.querySelector(".logIn");
-const editAdminButton = document.querySelector(".administrateur");
-const categorySelect = document.getElementById("categorie");
+const portfolio = document.getElementById('portfolio')// Section des projets 
+const gallery = document.querySelector(".gallery");// Récuperation de la gallery 
+const editAdminButton = document.querySelector(".modifier");// Permet l'ouvertur de la modal 
+const logOut = document.querySelector(".logOut");//Déconnexion
+const login = document.querySelector(".logIn");//Connexion
+const BannerAdmin = document.querySelector(".administrateur");//bannière admin 
+const filter = document.querySelector(".filter");//Div des bouttons de filtrage 
+const categorySelect = document.getElementById("categorie");//Sélecteur de catégorie 
 
 // Récupération des travaux de l'API
 async function fetchWorks() {
@@ -17,6 +18,7 @@ async function fetchWorks() {
 // Initialisation des données
 let works = [];
 
+// function initialisation 
 async function init() {
   try {
     works = await fetchWorks();
@@ -35,24 +37,23 @@ async function init() {
 
 // Création des filtres
 function createFilters() {
-  const filter = document.querySelector(".filter");
-
-  const filterLi = [
+//Liste des boutons 
+  const filterButton = [
     { liste: "Tous", id: 0 },
     { liste: "Objet", id: 1 },
     { liste: "Appartement", id: 2 },
     { liste: "Hotels & Restaurants", id: 3 },
   ];
-
-  filterLi.forEach((element, index) => {
-    const listeFilter = document.createElement("button");
-    listeFilter.innerText = element.liste;
-    listeFilter.dataset.id = element.id;
-    listeFilter.classList.add(index === 0 ? "btn-selected" : "btn-notSelected");
+// Création des boutons et filtrage des projet selon le bouton cliqué 
+  filterButton.forEach((element, index) => {
+    const listeFilterButton = document.createElement("button");
+    listeFilterButton.innerText = element.liste;
+    listeFilterButton.dataset.id = element.id;
+    listeFilterButton.classList.add(index === 0 ? "btn-selected" : "btn-notSelected");
     
-    filter.appendChild(listeFilter);
+    filter.appendChild(listeFilterButton);
   });
-
+// Ecoute des cliques 
   document.querySelectorAll(".filter button").forEach((button) => {
     button.addEventListener("click", filterWorks);
   });
@@ -77,6 +78,7 @@ function filterWorks(e) {
     button.classList.toggle("btn-selected", button === e.currentTarget);
     button.classList.toggle("btn-notSelected", button !== e.currentTarget);
   });
+  //rappel de la fonction selon le bouton cliquer
   showWork(categoryId);
 }
 
@@ -91,9 +93,9 @@ function checkAdminMode() {
   };
   // Définir la visibilité en fonction de l'état de connexion
   const updateVisibility = (isAdmin) => {
-    setElementVisibility(editAdminButton, isAdmin ? "flex" : "none");
-    setElementVisibility(modifierAdmin, isAdmin ? "inline" : "none");
-    setElementVisibility(document.querySelector(".filter"), isAdmin ? "none" : "flex");
+    setElementVisibility(BannerAdmin, isAdmin ? "flex" : "none");
+    setElementVisibility(editAdminButton, isAdmin ? "inline" : "none");
+    setElementVisibility(filter, isAdmin ? "none" : "flex");
     setElementVisibility(logOut, isAdmin ? "block" : "none");
     setElementVisibility(login, isAdmin ? "none" : "block");
   };

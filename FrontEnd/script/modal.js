@@ -71,8 +71,8 @@ async function deleteImage(imageId, figureElement, event) {
 
 // Gestion de l'affichage et de la navigation dans la modal
 function setupEventListeners() {
-  if (modifierAdmin) {
-    modifierAdmin.addEventListener("click", (e) => {
+  if (editAdminButton) {
+    editAdminButton.addEventListener("click", (e) => {
       e.preventDefault();
       modal.style.display = "flex"; // Afficher la modal
       modalBackground.style.display = "block"; // Afficher l'arrière-plan de la modal
