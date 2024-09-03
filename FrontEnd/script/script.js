@@ -1,12 +1,12 @@
 // Récupération des éléments DOM
-const portfolio = document.getElementById('portfolio')// Section des projets 
-const gallery = document.querySelector(".gallery");// Récuperation de la gallery 
-const editAdminButton = document.querySelector(".modifier");// Permet l'ouvertur de la modal 
-const logOut = document.querySelector(".logOut");//Déconnexion
-const login = document.querySelector(".logIn");//Connexion
-const BannerAdmin = document.querySelector(".administrateur");//bannière admin 
-const filter = document.querySelector(".filter");//Div des bouttons de filtrage 
-const categorySelect = document.getElementById("categorie");//Sélecteur de catégorie 
+const portfolio = document.getElementById("portfolio"); // Section des projets
+const gallery = document.querySelector(".gallery"); // Récuperation de la gallery
+const editAdminButton = document.querySelector(".modifier"); // Permet l'ouvertur de la modal
+const logOut = document.querySelector(".logOut"); //Déconnexion
+const login = document.querySelector(".logIn"); //Connexion
+const BannerAdmin = document.querySelector(".administrateur"); //bannière admin
+const filter = document.querySelector(".filter"); //Div des bouttons de filtrage
+const categorySelect = document.getElementById("categorie"); //Sélecteur de catégorie
 
 // Récupération des travaux de l'API
 async function fetchWorks() {
@@ -18,7 +18,7 @@ async function fetchWorks() {
 // Initialisation des données
 let works = [];
 
-// function initialisation 
+// function initialisation
 async function init() {
   try {
     works = await fetchWorks();
@@ -27,33 +27,35 @@ async function init() {
     setupEventListeners();
     checkAdminMode();
   } catch (error) {
-    const errorLoad=document.createElement('p')
-    errorLoad.innerHTML=`Erreur de connection au serveur veuillez patientez`
-    errorLoad.classList.add('errorLoad')
-    portfolio.appendChild(errorLoad)
+    const errorLoad = document.createElement("p");
+    errorLoad.innerHTML = `Erreur de connection au serveur veuillez patientez`;
+    errorLoad.classList.add("errorLoad");
+    portfolio.appendChild(errorLoad);
     console.error("Erreur lors de l'initialisation :", error);
   }
 }
 
 // Création des filtres
 function createFilters() {
-//Liste des boutons 
+  //Liste des boutons
   const filterButton = [
     { liste: "Tous", id: 0 },
     { liste: "Objet", id: 1 },
     { liste: "Appartement", id: 2 },
     { liste: "Hotels & Restaurants", id: 3 },
   ];
-// Création des boutons et filtrage des projet selon le bouton cliqué 
+  // Création des boutons et filtrage des projet selon le bouton cliqué
   filterButton.forEach((element, index) => {
     const listeFilterButton = document.createElement("button");
     listeFilterButton.innerText = element.liste;
     listeFilterButton.dataset.id = element.id;
-    listeFilterButton.classList.add(index === 0 ? "btn-selected" : "btn-notSelected");
-    
+    listeFilterButton.classList.add(
+      index === 0 ? "btn-selected" : "btn-notSelected"
+    );
+
     filter.appendChild(listeFilterButton);
   });
-// Ecoute des cliques 
+  // Ecoute des cliques
   document.querySelectorAll(".filter button").forEach((button) => {
     button.addEventListener("click", filterWorks);
   });
@@ -120,5 +122,3 @@ function setVisibility(elements) {
 // Lancement de l'initialisation
 init();
 createFilters();
-
-

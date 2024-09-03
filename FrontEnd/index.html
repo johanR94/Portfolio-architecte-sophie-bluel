@@ -57,70 +57,71 @@
 		<section id="portfolio">
 			<h2>Mes Projets
 				<!-- Button de modification mode admin -->
-				 <button class="modifier">
-					 <i class="fa-regular fa-pen-to-square"></i>
-					  Modifier </button>
+				<button class="modifier">
+					<i class="fa-regular fa-pen-to-square"></i>
+					Modifier </button>
 			</h2>
 			<div class="filter btn-filter"></div>
 			<!-- Affichage des traveaux sur la page principal -->
 			<div class="gallery">
 			</div>
 		</section>
-			<!-- Modal -->
-			<aside class="modal">
-				<!-- Affichage des traveaux enregistré dans la modal -->
-				<div class="modal_logo">
-					<!-- Icon retour en arrière  -->
-					<i class="fa-solid fa-arrow-left"></i> 
-					<!-- Icon fermeture de la modal  -->
-					<i class="fa-solid fa-x"></i> </div>
-				<!-- Gallery miniature -->
-				<div class="modal-show">
-					<h3>Galerie Photos</h3>
-					<div class="miniature"></div>
-					<!--Sous-lignage de la section  -->
-					<span class="underline"></span>
-					<!-- Button pour afficher le formulaire d'ajout  -->
-					<button type="button" class="btn-miniature">Ajouter une photo </button>
-				</div>
-				<!-- Affichage du formulaire d'ajout -->
-				<form class="modal-form" id="modalForm" action="#" method="post">
-					<h3>Ajouter une photo</h3>
+		<!-- Modal -->
+		<aside class="modal">
+			<!-- Affichage des traveaux enregistré dans la modal -->
+			<div class="modal_logo">
+				<!-- Icon retour en arrière  -->
+				<i class="fa-solid fa-arrow-left"></i>
+				<!-- Icon fermeture de la modal  -->
+				<i class="fa-solid fa-x"></i>
+			</div>
+			<!-- Gallery miniature -->
+			<div class="modal-show">
+				<h3>Galerie Photos</h3>
+				<div class="miniature"></div>
+				<!--Sous-lignage de la section  -->
+				<span class="underline"></span>
+				<!-- Button pour afficher le formulaire d'ajout  -->
+				<button type="button" class="btn-add-picture">Ajouter une photo </button>
+			</div>
+			<!-- Affichage du formulaire d'ajout -->
+			<form class="modal-form" id="modalForm" action="#" method="post">
+				<h3>Ajouter une photo</h3>
 				<!-- Prévisualisation de la photo à ajouter   -->
-					<div class="modal-preview">
-						<i class="fa-regular fa-image"></i>
-						<!-- Input pour choirsir le fichier de l'image -->
-						<label for="picture-input" class="modal-form-Picture">+ Ajouter une photo</label>
-						<input type="file" name="picture" id="picture-input" class="picture" accept=".jpg,.jpeg,.png">
-						<!--Sert a afficher le fichier choisi avec Javascript -->
-						<figure id="previewContainer">
-							<img id="previewImage" alt="Prévisualisation" src="#" />
-							<!-- Icon de suppréssion de la prévisualisation  -->
-							<i class="fa-solid fa-trash-can" id="removePreview"></i>
-						</figure>
-						<span>jpg, png : 4mo max</span>
-					</div>
+				<div class="modal-preview">
+					<i class="fa-regular fa-image"></i>
+					<!-- Input pour choirsir le fichier de l'image -->
+					<label for="picture-input" class="modal-form-Picture">+ Ajouter une photo</label>
+					<input type="file" name="picture" id="picture-input" class="picture" accept=".jpg,.jpeg,.png">
+					<!--Sert a afficher le fichier choisi avec Javascript -->
+					<figure id="previewContainer">
+						<img id="previewImage" alt="Prévisualisation" src="#" />
+						<!-- Icon de suppréssion de la prévisualisation  -->
+						<i class="fa-solid fa-trash-can" id="removePreview"></i>
+					</figure>
+					<span>jpg, png : 4mo max</span>
+				</div>
 				<!-- Input des formulaires  -->
-					<div class="modal-form-input">
-						<!-- Titre -->
-						<label for="title">Titre</label>
-						<input type="text" id="title" name="title" >
-						<!-- Choix de la catégorie  -->
-						<label for="categorie">Catégorie</label>
-						<select id="categorie" name="categorie">
-							<option value="none" label=" " selected disabled hidden ></option>
-							<option value="1">Objet</option>
-							<option value="2">Appartement</option>
-							<option value="3">Hotels & Restaurant</option>
-						</select>
-					</div>
-				
-					<span class="underline"></span>
-					<button type="submit" class="modal-form-submit" id="modalFormSubmit" >Valider</button>
-				</form>
-			</aside>			
-			<!-- Arrère plan de la modal  -->
-			<div class="modalBackground" ></div>
+				<div class="modal-form-input">
+					<!-- Titre -->
+					<label for="title">Titre</label>
+					<input type="text" id="title" name="title">
+					<!-- Choix de la catégorie  -->
+					<label for="categorie">Catégorie</label>
+					<select id="categorie" name="categorie">
+						<option value="none" label=" " selected disabled hidden></option>
+						<option value="1">Objet</option>
+						<option value="2">Appartement</option>
+						<option value="3">Hotels & Restaurant</option>
+					</select>
+				</div>
+
+				<span class="underline"></span>
+				<button type="submit" class="modal-form-submit" id="modalFormSubmit">Valider</button>
+			</form>
+		</aside>
+		<!-- Arrère plan de la modal  -->
+		<div class="modalBackground"></div>
 
 		<section id="contact">
 			<h2>Contact</h2>

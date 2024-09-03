@@ -1,18 +1,18 @@
 // Sélection des éléments du formulaire de login
 const emailInput = document.querySelector('input[name="email"]');
 const passwordInput = document.querySelector('input[name="password"]');
-const loginButton = document.querySelector('#submit-login');
-const loginForm = document.getElementById('loginForm');
+const loginButton = document.querySelector("#submit-login");
+const loginForm = document.getElementById("loginForm");
 
 // Création et ajout de l'élément pour le message d'erreur
-const errorMessage = document.createElement('p');
-errorMessage.style.display = 'none';
-errorMessage.style.color = 'red';
-errorMessage.style.textAlign = 'center';
+const errorMessage = document.createElement("p");
+errorMessage.style.display = "none";
+errorMessage.style.color = "red";
+errorMessage.style.textAlign = "center";
 loginForm.appendChild(errorMessage);
 
 // Gestion du clic sur le bouton de login
-loginButton.addEventListener('click', async (event) => {
+loginButton.addEventListener("click", async (event) => {
   event.preventDefault(); // Empêche la soumission du formulaire
 
   // Récupération des valeurs du formulaire
@@ -32,14 +32,16 @@ loginButton.addEventListener('click', async (event) => {
     if (token) {
       // Si le token est reçu, on le stocke et on redirige l'utilisateur
       console.log("Token reçu :", token);
-      localStorage.setItem('isLoggedIn', 'true');
-      sessionStorage.setItem('token', token);
+      localStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("token", token);
       masquerErreur();
-      window.location.href = './index.html'; // Redirection vers la page d'accueil
-    } 
+      window.location.href = "./index.html"; // Redirection vers la page d'accueil
+    }
   } catch (error) {
     // Gestion des erreurs
-    afficherErreur("Erreur lors de la tentative de connexion. Veuillez réessayer.");
+    afficherErreur(
+      "Erreur lors de la tentative de connexion. Veuillez réessayer."
+    );
     console.error("Échec de la connexion :", error);
   }
 });
@@ -52,11 +54,11 @@ loginButton.addEventListener('click', async (event) => {
  */
 async function obtenirTokenUtilisateur(email, password) {
   try {
-    const response = await fetch('http://localhost:5678/api/users/login', {
-      method: 'POST',
+    const response = await fetch("http://localhost:5678/api/users/login", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
@@ -65,7 +67,6 @@ async function obtenirTokenUtilisateur(email, password) {
     if (!response.ok) {
       if (response.status === 401) {
         afficherErreur("Erreur dans l'identifiant ou le mot de passe");
-      
       } else {
         throw new Error(`Erreur HTTP : ${response.status}`);
       }
@@ -87,12 +88,12 @@ async function obtenirTokenUtilisateur(email, password) {
  */
 function afficherErreur(message) {
   errorMessage.textContent = message;
-  errorMessage.style.display = 'block';
+  errorMessage.style.display = "block";
 }
 
 /**
  * Fonction pour masquer le message d'erreur
  */
 function masquerErreur() {
-  errorMessage.style.display = 'none';
+  errorMessage.style.display = "none";
 }

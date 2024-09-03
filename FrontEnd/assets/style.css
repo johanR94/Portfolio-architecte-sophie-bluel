@@ -229,17 +229,19 @@ nav li a {
 	text-align: center;
 	margin-bottom: 1em;
 }
-.btn-filter{
+
+.btn-filter {
 	height: 38px;
-    width: 100%;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 51px 0 51px 0
+	width: 100%;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	margin: 51px 0 51px 0
 }
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -317,7 +319,7 @@ footer nav ul {
 
 .btn-selected,
 .btn-notSelected,
-.btn-miniature {
+.btn-add-picture {
 	font-family: 'Syne';
 	font-weight: 700;
 	padding: 0 20px 0 20px;
@@ -329,10 +331,11 @@ footer nav ul {
 }
 
 .btn-selected,
-.btn-miniature {
+.btn-add-picture {
 	color: white;
 	background-color: #1D6154;
 }
+
 .btn-notSelected {
 	color: #1D6154;
 	background-color: #FFFEF8;
@@ -383,7 +386,7 @@ form button {
 }
 
 /* mode admin */
-/* barre administrateur */ 
+/* barre administrateur */
 .administrateur {
 	width: 100%;
 	height: 45px;
@@ -399,10 +402,12 @@ form button {
 	gap: 5px;
 
 }
+
 /* bouton deconnexion */
 .logOut {
 	display: none
 }
+
 /* lien pour afficher la modal */
 .modifier {
 	color: black;
@@ -442,6 +447,7 @@ form button {
 	padding: 1% 0 1% 0;
 
 }
+
 /* container des projets */
 .modal-show {
 	display: flex;
@@ -450,12 +456,13 @@ form button {
 	width: 75%;
 }
 
-h3{
+h3 {
 	text-align: center;
 	font-size: 24px;
 	font-weight: 400;
 }
-/* affichage des projets */ 
+
+/* affichage des projets */
 .miniature {
 	display: flex;
 	flex-wrap: wrap;
@@ -464,13 +471,15 @@ h3{
 	padding-bottom: 0;
 	align-items: center;
 }
-/* barre modal */ 
+
+/* barre modal */
 .underline {
 	width: 100%;
 	border: 1px solid #B3B3B3;
 	margin-bottom: 15px;
 }
-/* en-tête modal*/ 
+
+/* en-tête modal*/
 .modal_logo {
 	width: 100%;
 	height: 59px;
@@ -481,19 +490,23 @@ h3{
 	font-size: 21px;
 	padding-top: 15px;
 }
+
 /* Fléche retour */
 .fa-arrow-left {
 	visibility: hidden;
 }
+
 /* bouton de la gallery modal */
-.btn-miniature {
+.btn-add-picture {
 	font-weight: 300;
 	font-size: 14px;
 }
+
 /* icon poubelle de la gallery modal*/
 .fa-trash-can {
 	font-size: 11px;
 }
+
 /* style du bouton de suppréssion d'un article */
 .btn-delet {
 	width: 20px;
@@ -508,18 +521,21 @@ h3{
 	justify-content: center;
 	align-items: center;
 }
+
 /* form modal */
-/* form container */ 
+/* form container */
 .modal-form {
 	display: none;
 	flex-direction: column;
 	width: 420px;
 	justify-content: center;
 }
+
 /* Titre modal form*/
 .modal-form h3 {
 	margin-bottom: 15px;
 }
+
 /* bloc du preview */
 .modal-preview {
 	display: flex;
@@ -530,11 +546,13 @@ h3{
 	width: 420px;
 	height: 169px;
 }
-/* icon form */ 
+
+/* icon form */
 .fa-image {
 	font-size: 110px;
 	color: #B9C5CC;
 }
+
 /* label du form picture */
 .modal-form-Picture {
 	width: 173px;
@@ -544,21 +562,25 @@ h3{
 	text-align: center;
 	background-color: #CBD6DC;
 }
-input[type="file"]{
+
+input[type="file"] {
 	display: none;
 }
+
 /* container d'image du preview */
 #previewContainer {
-	display:none;
+	display: none;
 	position: relative;
 	bottom: 137px;
 }
+
 /* image du formulaire */
 #previewImage {
 	width: 172px;
 	height: 169px;
 }
-/* style d'icone pour suppréssion du preview */ 
+
+/* style d'icone pour suppréssion du preview */
 #removePreview {
 	position: absolute;
 	top: 5px;
@@ -566,9 +588,11 @@ input[type="file"]{
 	cursor: pointer;
 	color: white;
 }
+
 .modal-form-input {
 	margin: 15px 0 80px 0;
 }
+
 /* input form */
 #title,
 #categorie {
@@ -578,6 +602,7 @@ input[type="file"]{
 	border: 0px;
 	font-size: 16px;
 }
+
 /* style du submit*/
 .modal-form-submit {
 	background-color: #A7A7A7;
@@ -591,20 +616,17 @@ input[type="file"]{
 	text-align: center;
 	border-radius: 60px;
 }
-/* style lorsque que le form est complet */ 
-.enabled{
+
+/* style lorsque que le form est complet */
+.enabled {
 	background-color: #1D6154;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 /* Message d'erreur de chargement */
-.errorLoad{
+.errorLoad {
 	font-size: 64px;
-    font-weight: 900;
-    text-align: center;
-    color: #1D6154;
+	font-weight: 900;
+	text-align: center;
+	color: #1D6154;
 }
-
-
-
-

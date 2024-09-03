@@ -9,7 +9,7 @@ const modalShow = document.querySelector(".modal-show"); // Section principale d
 const modalReturn = document.querySelector(".fa-arrow-left"); // Flèche de retour dans la modal
 const modalBackground = document.querySelector(".modalBackground"); // Arrière-plan de la modal
 const modal = document.querySelector(".modal"); // Élément principal de la modal
-const btnModalMini = document.querySelector(".btn-miniature"); // Bouton pour afficher la première modal
+const btnModalMini = document.querySelector(".btn-add-picture"); // Bouton pour afficher la première modal
 const token = sessionStorage.getItem("token"); // Récupération du token pour l'authentification des requêtes API
 
 // Fonction d'affichage des miniatures dans la modal
@@ -62,7 +62,9 @@ async function deleteImage(imageId, figureElement, event) {
     console.log("Image supprimée avec succès");
   } catch (error) {
     console.error("Erreur lors de la suppression de l'image :", error);
-    alert("Une erreur est survenue lors de la suppression. Veuillez réessayer.");
+    alert(
+      "Une erreur est survenue lors de la suppression. Veuillez réessayer."
+    );
     if (figureElement) {
       document.querySelector(".miniature").appendChild(figureElement); // Réajouter l'élément au DOM en cas d'échec
     }
@@ -114,7 +116,10 @@ function closeModal() {
 function addWork() {
   // Vérification de la validité du formulaire
   function validateForm() {
-    const isFormValid = pictureInput.files.length > 0 && titleInput.value.trim() && categorySelect.value;
+    const isFormValid =
+      pictureInput.files.length > 0 &&
+      titleInput.value.trim() &&
+      categorySelect.value;
     submitButton.classList.toggle("enabled", isFormValid); // Activer ou désactiver le bouton de soumission selon la validité du formulaire
     submitButton.disabled = !isFormValid;
   }
@@ -140,16 +145,18 @@ function addWork() {
   });
 
   // Gestion de la suppression de la prévisualisation
-  document.getElementById("removePreview").addEventListener("click", function (e) {
-    e.preventDefault();
-    const previewContainer = document.getElementById("previewContainer");
-    const previewImage = document.getElementById("previewImage");
-    previewImage.src = ""; // Vider la source de l'image prévisualisée
-    previewContainer.style.display = "none"; // Cacher le conteneur de prévisualisation
-    pictureInput.value = ""; // Réinitialiser l'input de fichier
-    
-    validateForm(); // Valider à nouveau le formulaire après suppression de la prévisualisation
-  });
+  document
+    .getElementById("removePreview")
+    .addEventListener("click", function (e) {
+      e.preventDefault();
+      const previewContainer = document.getElementById("previewContainer");
+      const previewImage = document.getElementById("previewImage");
+      previewImage.src = ""; // Vider la source de l'image prévisualisée
+      previewContainer.style.display = "none"; // Cacher le conteneur de prévisualisation
+      pictureInput.value = ""; // Réinitialiser l'input de fichier
+
+      validateForm(); // Valider à nouveau le formulaire après suppression de la prévisualisation
+    });
 
   // Gestion de la soumission du formulaire d'ajout
   modalForm.addEventListener("submit", async function (e) {
@@ -170,8 +177,8 @@ async function postNewWork(formData) {
     const response = await fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
-        "Authorization": `Bearer ${token}`, // Authentification avec le token
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`, // Authentification avec le token
       },
       body: formData, // Contenu du formulaire à envoyer
     });
