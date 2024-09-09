@@ -36,29 +36,38 @@ async function init() {
 }
 
 // Création des filtres
-function createFilters() {
-  //Liste des boutons
-  const filterButton = [
-    { liste: "Tous", id: 0 },
-    { liste: "Objet", id: 1 },
-    { liste: "Appartement", id: 2 },
-    { liste: "Hotels & Restaurants", id: 3 },
-  ];
-  // Création des boutons et filtrage des projet selon le bouton cliqué
-  filterButton.forEach((element, index) => {
-    const listeFilterButton = document.createElement("button");
-    listeFilterButton.innerText = element.liste;
-    listeFilterButton.dataset.id = element.id;
-    listeFilterButton.classList.add(
-      index === 0 ? "btn-selected" : "btn-notSelected"
-    );
+async function createFilters() {
+  try {
+    const response = await fetch("http://localhost:5678/api/categories");
+    const categories = await response.json();
 
-    filter.appendChild(listeFilterButton);
-  });
-  // Ecoute des cliques
-  document.querySelectorAll(".filter button").forEach((button) => {
-    button.addEventListener("click", filterWorks);
-  });
+    // Création du bouton "Tous"
+    async function createButton() {
+
+      
+   
+    const allButton = document.createElement("button");
+    allButton.innerText = "Tous";
+    allButton.dataset.id = 0; // ID 0 pour afficher tous les projets
+    allButton.classList.add("btn-selected"); // Le bouton "Tous" est sélectionné par défaut
+    filter.appendChild(allButton);
+  }
+    // Création des boutons pour chaque catégorie récupérée
+    categories.forEach((category) => {
+      const buttonElement = document.createElement("button");
+      buttonElement.innerText = category.name;
+      buttonElement.dataset.id = category.id;
+      buttonElement.classList.add("btn-notSelected"); // Tous les autres boutons ne sont pas sélectionnés
+      filter.appendChild(buttonElement);
+    });
+
+    // Écoute des clics sur les boutons
+    document.querySelectorAll(".filter button").forEach((button) => {
+      button.addEventListener("click", filterWorks);
+    });
+  } catch (error) {
+    console.error("Erreur lors de la récupération des catégories :", error);
+  }
 }
 
 // Affichage des travaux filtrés

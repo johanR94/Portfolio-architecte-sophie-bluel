@@ -26,11 +26,9 @@ function miniaturePicture() {
     miniatureShow.appendChild(figureMini); // Ajouter la figure à la section des miniatures
 
     // Ajout de l'événement de suppression d'image
-    const deleteButton = figureMini.querySelector(".btn-delet");
+    const deleteButton = figureMini.querySelector(".btn-delet"); // Sélectionner le bouton de suppression pour chaque miniature
     if (deleteButton) {
       deleteButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
         if (confirm("Voulez-vous vraiment supprimer cette image ?")) {
           deleteImage(element.id, figureMini); // Appel de la fonction de suppression d'image
         }
@@ -40,14 +38,7 @@ function miniaturePicture() {
 }
 
 // Fonction pour supprimer une image
-async function deleteImage(imageId, figureElement, event) {
-  if (event) {
-    event.preventDefault(); // Empêcher le comportement par défaut de l'événement
-  }
-  console.log("deleteImage appelée avec l'ID:", imageId);
-  if (figureElement) {
-    figureElement.remove(); // Retirer l'élément du DOM avant la suppression réelle
-  }
+async function deleteImage(imageId, figureElement) {
   try {
     const response = await fetch(`http://localhost:5678/api/works/${imageId}`, {
       method: "DELETE",
@@ -56,18 +47,23 @@ async function deleteImage(imageId, figureElement, event) {
         Authorization: `Bearer ${token}`, // Authentification avec le token
       },
     });
+
     if (!response.ok) {
       throw new Error(`Erreur HTTP : ${response.status}`);
     }
-    console.log("Image supprimée avec succès");
+
+    figureElement.remove(); // Retirer l'élément du DOM après suppression réussie
+    // Mise à jour des travaux après la suppression
+
+    works = works.filter((work) => work.id !== imageId); // Supprimer le travail de la liste des travaux
+    miniaturePicture();
+    showWork(0);
+    closeModal();
   } catch (error) {
     console.error("Erreur lors de la suppression de l'image :", error);
     alert(
       "Une erreur est survenue lors de la suppression. Veuillez réessayer."
     );
-    if (figureElement) {
-      document.querySelector(".miniature").appendChild(figureElement); // Réajouter l'élément au DOM en cas d'échec
-    }
   }
 }
 
@@ -75,7 +71,6 @@ async function deleteImage(imageId, figureElement, event) {
 function setupEventListeners() {
   if (editAdminButton) {
     editAdminButton.addEventListener("click", (e) => {
-      e.preventDefault();
       modal.style.display = "flex"; // Afficher la modal
       modalBackground.style.display = "block"; // Afficher l'arrière-plan de la modal
     });
@@ -86,7 +81,6 @@ function setupEventListeners() {
 
   if (btnModalMini) {
     btnModalMini.addEventListener("click", (e) => {
-      e.preventDefault();
       modalShow.style.display = "none"; // Cacher la section principale de la modal
       modalForm.style.display = "flex"; // Afficher le formulaire d'ajout
       modalReturn.style.visibility = "visible"; // Afficher la flèche de retour
@@ -95,7 +89,6 @@ function setupEventListeners() {
 
   if (modalReturn) {
     modalReturn.addEventListener("click", (e) => {
-      e.preventDefault();
       modalShow.style.display = "flex"; // Réafficher la section principale de la modal
       modalForm.style.display = "none"; // Cacher le formulaire d'ajout
       modalReturn.style.visibility = "hidden"; // Cacher la flèche de retour
@@ -119,7 +112,7 @@ function addWork() {
     const isFormValid =
       pictureInput.files.length > 0 &&
       titleInput.value.trim() &&
-      categorySelect.value;
+      categorySelect.value>0;
     submitButton.classList.toggle("enabled", isFormValid); // Activer ou désactiver le bouton de soumission selon la validité du formulaire
     submitButton.disabled = !isFormValid;
   }
@@ -138,7 +131,6 @@ function addWork() {
         const previewImage = document.getElementById("previewImage");
         previewImage.src = e.target.result; // Afficher l'image sélectionnée en prévisualisation
         document.getElementById("previewContainer").style.display = "block"; // Afficher le conteneur de prévisualisation
-        validateForm();
       };
       reader.readAsDataURL(file); // Lire le fichier pour en générer une URL
     }
@@ -147,27 +139,26 @@ function addWork() {
   // Gestion de la suppression de la prévisualisation
   document
     .getElementById("removePreview")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
+    .addEventListener("click", function () {
       const previewContainer = document.getElementById("previewContainer");
       const previewImage = document.getElementById("previewImage");
       previewImage.src = ""; // Vider la source de l'image prévisualisée
       previewContainer.style.display = "none"; // Cacher le conteneur de prévisualisation
       pictureInput.value = ""; // Réinitialiser l'input de fichier
-
       validateForm(); // Valider à nouveau le formulaire après suppression de la prévisualisation
     });
 
   // Gestion de la soumission du formulaire d'ajout
   modalForm.addEventListener("submit", async function (e) {
     e.preventDefault();
-    e.stopPropagation();
     const formData = new FormData();
     formData.append("image", await pictureInput.files[0]); // Ajouter l'image au formulaire
     formData.append("title", titleInput.value.trim()); // Ajouter le titre au formulaire
     formData.append("category", categorySelect.value); // Ajouter la catégorie au formulaire
 
     postNewWork(formData); // Appeler la fonction pour envoyer le formulaire à l'API
+    closeModal();
+    previewContainer.style.display = "none"; // Cacher le conteneur de prévisualisation
   });
 }
 

@@ -35,7 +35,7 @@ loginButton.addEventListener("click", async (event) => {
       localStorage.setItem("isLoggedIn", "true");
       sessionStorage.setItem("token", token);
       masquerErreur();
-      window.location.href = "./index.html"; // Redirection vers la page d'accueil
+      window.location.href = "/index.html"; // Redirection vers la page d'accueil
     }
   } catch (error) {
     // Gestion des erreurs
