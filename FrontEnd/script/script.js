@@ -39,19 +39,15 @@ async function init() {
 async function createFilters() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
-    const categories = await response.json();
-
+    const categories = await response.json()
+    
     // Création du bouton "Tous"
-    async function createButton() {
-
-      
-   
     const allButton = document.createElement("button");
     allButton.innerText = "Tous";
     allButton.dataset.id = 0; // ID 0 pour afficher tous les projets
     allButton.classList.add("btn-selected"); // Le bouton "Tous" est sélectionné par défaut
     filter.appendChild(allButton);
-  }
+
     // Création des boutons pour chaque catégorie récupérée
     categories.forEach((category) => {
       const buttonElement = document.createElement("button");
