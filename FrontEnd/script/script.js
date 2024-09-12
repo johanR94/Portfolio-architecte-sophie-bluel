@@ -116,14 +116,6 @@ function checkAdminMode() {
     });
   }
 }
-
-// Fonction utilitaire pour la gestion de la visibilité des éléments
-function setVisibility(elements) {
-  elements.forEach(([el, style]) => {
-    if (el) el.style.display = style;
-  });
-}
-
 // Lancement de l'initialisation
 init();
 createFilters();
