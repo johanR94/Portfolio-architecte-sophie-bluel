@@ -39,8 +39,8 @@ async function init() {
 async function createFilters() {
   try {
     const response = await fetch("http://localhost:5678/api/categories");
-    const categories = await response.json()
-    
+    const categories = await response.json();
+
     // Création du bouton "Tous"
     const allButton = document.createElement("button");
     allButton.innerText = "Tous";

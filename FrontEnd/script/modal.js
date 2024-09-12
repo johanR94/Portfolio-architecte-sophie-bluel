@@ -112,7 +112,7 @@ function addWork() {
     const isFormValid =
       pictureInput.files.length > 0 &&
       titleInput.value.trim() &&
-      categorySelect.value>0;
+      categorySelect.value > 0;
     submitButton.classList.toggle("enabled", isFormValid); // Activer ou désactiver le bouton de soumission selon la validité du formulaire
     submitButton.disabled = !isFormValid;
   }
@@ -158,6 +158,7 @@ function addWork() {
 
     postNewWork(formData); // Appeler la fonction pour envoyer le formulaire à l'API
     closeModal();
+    validateForm();
     previewContainer.style.display = "none"; // Cacher le conteneur de prévisualisation
   });
 }

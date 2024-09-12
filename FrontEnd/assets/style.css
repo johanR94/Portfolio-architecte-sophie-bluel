@@ -335,6 +335,9 @@ footer nav ul {
 	color: white;
 	background-color: #1D6154;
 }
+.btn-add-picture{
+	width: 237px;
+}
 
 .btn-notSelected {
 	color: #1D6154;
@@ -612,7 +615,7 @@ input[type="file"] {
 	font-weight: 700;
 	color: white;
 	margin: 2em auto;
-	width: 180px;
+	width: 237px;
 	text-align: center;
 	border-radius: 60px;
 }
